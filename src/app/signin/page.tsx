@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import SignInForm from "@/components/SignInForm";
 
 export default function SignInPage() {
@@ -7,7 +8,9 @@ export default function SignInPage() {
       <p className="mb-6 mt-1 text-center text-sm opacity-70">
         বিস্তারিত দাম, বাজার তুলনা ও প্রোফাইল দেখতে অ্যাকাউন্টে ঢুকুন।
       </p>
-      <SignInForm />
+      <Suspense fallback={<div className="skeleton mx-auto h-72 max-w-md rounded-2xl" />}>
+        <SignInForm />
+      </Suspense>
     </main>
   );
 }

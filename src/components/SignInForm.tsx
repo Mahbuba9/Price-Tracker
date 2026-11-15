@@ -1,14 +1,27 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import toast from "react-hot-toast";
 import { authClient } from "@/lib/auth-client";
 
 export default function SignInForm() {
   const router = useRouter();
+  const params = useSearchParams();
   const [loading, setLoading] = useState(false);
+
+  const redirectParam = params.get("redirect") || "/";
+  const redirectTo =
+    redirectParam.startsWith("/") && !redirectParam.startsWith("//")
+      ? redirectParam
+      : "/";
+
+  useEffect(() => {
+    if (params.get("reason") === "login-required") {
+      toast.error("এই পাতা দেখতে আগে সাইন ইন করুন", { id: "login-required" });
+    }
+  }, [params]);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -29,7 +42,7 @@ export default function SignInForm() {
     }
 
     toast.success("সফলভাবে সাইন ইন হয়েছে");
-    router.push("/");
+    router.push(redirectTo);
     router.refresh();
   }
 
