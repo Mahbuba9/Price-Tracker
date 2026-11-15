@@ -32,3 +32,15 @@ export function banglaDate(date: Date = new Date()): string {
     year: "numeric",
   }).format(date);
 }
+
+// "kg" -> "প্রতি কেজি"
+export function unitLabel(unit: string): string {
+  const map: Record<string, string> = {
+    kg: "প্রতি কেজি",
+    litre: "প্রতি লিটার",
+    liter: "প্রতি লিটার",
+    dozen: "প্রতি ডজন",
+    piece: "প্রতি পিস",
+  };
+  return map[unit.toLowerCase()] ?? `প্রতি ${unit}`;
+}

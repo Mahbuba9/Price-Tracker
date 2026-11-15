@@ -1,3 +1,5 @@
+import type { Category, Product } from "./types";
+
 const BASE_URL = "https://openapi.programming-hero.com/api/bazardor";
 
 async function get<T>(path: string): Promise<T> {
@@ -6,9 +8,7 @@ async function get<T>(path: string): Promise<T> {
   return res.json();
 }
 
-export const getProducts = () => get<unknown>("/products");
+export const getProducts = () => get<Product[]>("/products");
 export const getProductsByCategory = (category: string) =>
-  get<unknown>(`/products?category=${category}`);
-export const getProduct = (id: string | number) => get<unknown>(`/products/${id}`);
-export const getCategories = () => get<unknown>("/categories");
-export const getCategory = (slug: string) => get<unknown>(`/categories/${slug}`);
+  get<Product[]>(`/products?category=${category}`);
+export const getCategories = () => get<Category[]>("/categories");
