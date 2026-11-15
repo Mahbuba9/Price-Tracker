@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Hind_Siliguri } from "next/font/google";
 import "./globals.css";
 import SiteHeader from "@/components/SiteHeader";
@@ -25,7 +26,9 @@ export default function RootLayout({
     <html lang="bn" data-theme="bazar">
       <body className={`${hind.variable} font-sans`}>
         <ToasterProvider />
-        <SiteHeader />
+        <Suspense fallback={<div className="h-28 bg-base-100" />}>
+          <SiteHeader />
+        </Suspense>
         {children}
         <Footer />
       </body>
