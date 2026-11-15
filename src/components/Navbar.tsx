@@ -1,9 +1,14 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { banglaDate } from "@/lib/format";
 import type { Category } from "@/lib/types";
 
 export default function Navbar({ categories }: { categories: Category[] }) {
+  const pathname = usePathname();
+
   return (
     <header className="bg-base-100 border-b border-base-300">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
@@ -17,7 +22,9 @@ export default function Navbar({ categories }: { categories: Category[] }) {
           />
           <div className="leading-tight">
             <div className="text-lg font-bold">বাজার দর</div>
-            <div className="text-xs opacity-70">{banglaDate()}</div>
+            <div className="text-xs opacity-70" suppressHydrationWarning>
+              {banglaDate()}
+            </div>
           </div>
         </Link>
 
@@ -37,7 +44,11 @@ export default function Navbar({ categories }: { categories: Category[] }) {
             <li key={c.id}>
               <Link
                 href={`/category/${c.slug}`}
-                className="flex items-center gap-1 whitespace-nowrap rounded-full px-3 py-1.5 hover:bg-base-200"
+                className={`flex items-center gap-1 whitespace-nowrap rounded-full px-3 py-1.5 ${
+                  pathname === `/category/${c.slug}`
+                    ? "bg-primary text-primary-content font-semibold"
+                    : "hover:bg-base-200"
+                }`}
               >
                 <span>{c.icon}</span>
                 <span>{c.nameBn}</span>
