@@ -12,3 +12,8 @@ export const getProducts = () => get<Product[]>("/products");
 export const getProductsByCategory = (category: string) =>
   get<Product[]>(`/products?category=${category}`);
 export const getCategories = () => get<Category[]>("/categories");
+
+export const getProductBySlug = async (slug: string) => {
+  const products = await getProducts();
+  return products.find((p) => p.slug === slug) ?? null;
+};
