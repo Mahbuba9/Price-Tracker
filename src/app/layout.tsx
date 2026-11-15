@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Hind_Siliguri } from "next/font/google";
 import "./globals.css";
+import SiteHeader from "@/components/SiteHeader";
+import Footer from "@/components/Footer";
 
 const hind = Hind_Siliguri({
   subsets: ["bengali", "latin"],
@@ -20,7 +22,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="bn" data-theme="bazar">
-      <body className={`${hind.variable} font-sans`}>{children}</body>
+      <body className={`${hind.variable} font-sans`}>
+        <SiteHeader />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }
