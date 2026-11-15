@@ -1,18 +1,13 @@
-import { getProducts } from "@/lib/api";
-import { formatPrice, unitLabel, banglaDate } from "@/lib/format";
+import Navbar from "@/components/Navbar";
+import { getCategories } from "@/lib/api";
 
 export default async function Home() {
-  const products = await getProducts();
-  const units = [...new Set(products.map((p) => p.unit))];
+  const categories = await getCategories();
 
   return (
-    <main className="p-10">
-      <p>{banglaDate()}</p>
-      <p>Total products: {products.length}</p>
-      <p>Units found: {units.join(", ")}</p>
-      <p>
-        {products[0].image} {products[0].nameBn} - {formatPrice(products[0].today)} টাকা ({unitLabel(products[0].unit)})
-      </p>
-    </main>
+    <>
+      <Navbar categories={categories} />
+      <main className="mx-auto max-w-6xl p-4">Home content coming soon</main>
+    </>
   );
 }
