@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -5,6 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { authClient } from "@/lib/auth-client";
+import SocialButtons from "@/components/SocialButtons";
 
 export default function SignUpForm() {
   const router = useRouter();
@@ -12,6 +14,7 @@ export default function SignUpForm() {
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+
     const form = new FormData(e.currentTarget);
     const name = String(form.get("name") || "").trim();
     const email = String(form.get("email") || "").trim();
@@ -19,12 +22,21 @@ export default function SignUpForm() {
     const confirm = String(form.get("confirm") || "");
 
     if (!name) return toast.error("নাম লিখুন");
+
     if (password.length < 8)
       return toast.error("পাসওয়ার্ড কমপক্ষে ৮ অক্ষরের হতে হবে");
-    if (password !== confirm) return toast.error("পাসওয়ার্ড মিলছে না");
+
+    if (password !== confirm)
+      return toast.error("পাসওয়ার্ড মিলছে না");
 
     setLoading(true);
-    const { error } = await authClient.signUp.email({ name, email, password });
+
+    const { error } = await authClient.signUp.email({
+      name,
+      email,
+      password,
+    });
+
     setLoading(false);
 
     if (error) {
@@ -33,6 +45,7 @@ export default function SignUpForm() {
     }
 
     toast.success("অ্যাকাউন্ট তৈরি হয়েছে! এখন সাইন ইন করুন");
+
     await authClient.signOut();
     router.push("/signin");
   }
@@ -49,6 +62,7 @@ export default function SignUpForm() {
             className="input input-bordered mt-1 w-full"
           />
         </label>
+
         <label className="block text-sm">
           ইমেইল
           <input
@@ -59,6 +73,7 @@ export default function SignUpForm() {
             className="input input-bordered mt-1 w-full"
           />
         </label>
+
         <label className="block text-sm">
           পাসওয়ার্ড
           <input
@@ -68,6 +83,7 @@ export default function SignUpForm() {
             className="input input-bordered mt-1 w-full"
           />
         </label>
+
         <label className="block text-sm">
           পাসওয়ার্ড নিশ্চিত করুন
           <input
@@ -78,10 +94,15 @@ export default function SignUpForm() {
           />
         </label>
 
-        <button disabled={loading} className="btn btn-primary w-full">
+        <button
+          disabled={loading}
+          className="btn btn-primary w-full"
+        >
           {loading ? "অপেক্ষা করুন..." : "অ্যাকাউন্ট তৈরি করুন"}
         </button>
       </form>
+
+      <SocialButtons redirectTo="/" />
 
       <p className="mt-4 text-center text-sm">
         অ্যাকাউন্ট আছে?{" "}
@@ -89,6 +110,7 @@ export default function SignUpForm() {
           সাইন ইন করুন
         </Link>
       </p>
+
       <p className="mt-4 text-center text-sm opacity-70">
         <Link href="/">← হোম পেজে ফিরে যান</Link>
       </p>
