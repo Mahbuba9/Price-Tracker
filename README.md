@@ -2,7 +2,7 @@
 
 বাজার দর is a Bangla grocery price tracker. It shows today's prices of daily essentials (rice, lentils, oil, vegetables, fish, meat, eggs & dairy, spices) with price changes and market-wise comparison across Bangladesh.
 
-🔗 **Live site:** _add your Vercel link here_
+🔗 **Live site:** https://price-tracker-gr3o.vercel.app
 📦 **Repository:** https://github.com/Mahbuba9/Price-Tracker
 
 ## ✨ Key Features
