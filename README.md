@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🛒 বাজার দর (BazarDor)
 
-## Getting Started
+বাজার দর is a Bangla grocery price tracker. It shows today's prices of daily essentials (rice, lentils, oil, vegetables, fish, meat, eggs & dairy, spices) with price changes and market-wise comparison across Bangladesh.
 
-First, run the development server:
+🔗 **Live site:** _add your Vercel link here_
+📦 **Repository:** https://github.com/Mahbuba9/Price-Tracker
+
+## ✨ Key Features
+
+1. **Live price ticker:** an infinite scrolling strip showing emoji, name, price per unit, and a ▲/▼ percentage change.
+2. **Risers and fallers:** the home page highlights the top 6 products whose prices rose and the top 6 whose prices fell today.
+3. **Category pages with sorting:** browse by category and sort by default, price low to high, or price high to low (numeric sorting).
+4. **Product details:** minimum, maximum and average price, plus a market-by-market price table (protected route).
+5. **Authentication:** email/password, Google and GitHub login using Better Auth, with toast notifications.
+6. **Update profile:** logged-in users can change their name from the profile page.
+7. **Responsive design:** works on mobile, tablet and desktop, with skeleton loaders and friendly 404 pages.
+
+## 🛠️ Technologies Used
+
+- **Next.js** (App Router) and **TypeScript**
+- **Tailwind CSS** and **DaisyUI**
+- **Better Auth** (email/password, Google, GitHub)
+- **MongoDB Atlas**
+- **react-hot-toast**
+- **Vercel** for deployment
+
+## 🚀 Getting Started
 
 ```bash
+git clone https://github.com/Mahbuba9/Price-Tracker.git
+cd Price-Tracker
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Create a `.env.local` file with:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+MONGODB_URI=
+BETTER_AUTH_SECRET=
+BETTER_AUTH_URL=http://localhost:3000
+NEXT_PUBLIC_APP_URL=http://localhost:3000
+GITHUB_CLIENT_ID=
+GITHUB_CLIENT_SECRET=
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🌐 API
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Data comes from `https://openapi.programming-hero.com/api/bazardor` (`/products`, `/categories`).

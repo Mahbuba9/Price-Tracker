@@ -29,13 +29,15 @@ export default function Navbar({ categories }: { categories: Category[] }) {
     <header className="bg-base-100 border-b border-base-300">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
         <Link href="/" className="flex items-center gap-3">
-          <Image
-            src="/logo-icon.png"
-            alt="বাজার দর"
-            width={40}
-            height={40}
-            className="rounded-lg"
-          />
+          <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary">
+            <Image
+              src="/logo-icon.png"
+              alt="বাজার দর"
+              width={24}
+              height={24}
+              className="h-6 w-6 object-contain brightness-0 invert"
+            />
+          </span>
           <div className="leading-tight">
             <div className="text-lg font-bold">বাজার দর</div>
             <div className="text-xs opacity-70" suppressHydrationWarning>
