@@ -49,3 +49,4 @@ GOOGLE_CLIENT_SECRET=
 ## 🌐 API
 
 Data comes from `https://openapi.programming-hero.com/api/bazardor` (`/products`, `/categories`).
+
